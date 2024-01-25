@@ -12,15 +12,20 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
 
 var searchInput = document.querySelector("#search-input");
 
+
 $("#search-button").on("click", function (event) {
     event.preventDefault();
     console.log(searchInput.value);
 
    //if emoty dont do anything
-    if (searchInput.value === "") {
+    if (searchInput.value === "" || searchInput.value === null ) {
         return;
     }
+    
+
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput.value + "&" + "appid="+ apiKey;
+
+
     $("#history").append("<button class='btn btn-secondary history-button'>" + searchInput.value + "</button> ");
     searchInput.value = "";
 
@@ -39,6 +44,15 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
     })
     .then(function (data) {
 
+    if (data.cod === "404") {
+    //empty div
+    $("#today").empty();
+    $("#today").append("<h1>" + "please enter a valid city" + "</h1>");
+            return;
+        }
+    //empty div
+    $("#today").empty();
+    
     //today date dd/mm/yyyy
     var today = dayjs().format('DD MM, YYYY');
     var iconCode = data.weather[0].icon;
@@ -51,9 +65,7 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
     $("#today").append("<p>Wind:" + data.wind.speed + "</p>");
 
     $("#today").append("<p>Humidity:" + data.main.humidity + "</p>");
-    
-    //the date
-   var today = new Date();
+ 
 
       console.log(data);
     }); 
