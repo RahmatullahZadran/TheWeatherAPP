@@ -39,18 +39,21 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
     })
     .then(function (data) {
 
-
+    //today date dd/mm/yyyy
+    var today = dayjs().format('DD MM, YYYY');
     var iconCode = data.weather[0].icon;
     var iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
     
-    $("#today").append("<h1>" + data.name + " " + data.dt + "<img src='" + iconUrl + "'>"  + "</h1>");
+    $("#today").append("<h1>" + data.name + " " + today + "<img src='" + iconUrl + "'>"  + "</h1>");
     
     $("#today").append("<p>Temp:" + data.main.temp + "</p>");
 
     $("#today").append("<p>Wind:" + data.wind.speed + "</p>");
 
     $("#today").append("<p>Humidity:" + data.main.humidity + "</p>");
-
+    
+    //the date
+   var today = new Date();
 
       console.log(data);
     }); 
