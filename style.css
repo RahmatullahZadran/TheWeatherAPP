@@ -12,3 +12,17 @@
     width: 326px;
 }
 
+.today {
+    background-color: #4CAF50;
+    border: black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    
+    width: 1000px;
+    height: 180px;
+}   
