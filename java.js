@@ -65,10 +65,27 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
     $("#today").append("<p>Wind:" + data.wind.speed + "</p>");
 
     $("#today").append("<p>Humidity:" + data.main.humidity + "</p>");
- 
 
-      console.log(data);
-    }); 
+    console.log(data);
+    $("#forecast").empty();
+    $("#forecast").append("<h1>" + "5 Day Forecast" + "</h1>");
+            
+    for (var i = 1; i <= 5; i++) {
+        var cardHtml = "<div class='card'>" +
+                            "<div class='card-body'>" +
+                                "<h5 class='card-title'>" + "Date" + "</h5>" +
+                                "<p class='card-text'>" + "Temp" + "</p>" +
+                                "<p class='card-text'>" + "Wind" + "</p>" +
+                                "<p class='card-text'>" + "Humidity" + "</p>" +
+                            "</div>" +
+                        "</div>";
+
+        $("#forecast").append(cardHtml);
+        $(".card").css("width", "18%");
+    
+    }
+
+}); 
 
 });
 
@@ -86,6 +103,3 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
 // //humidity
 // $("#today").append("<p>Humidity:</p>");
 
-
-
-console.log(queryURL);

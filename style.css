@@ -33,7 +33,7 @@
     margin-top: 5px;
 }
 
-#forecast {
+/* #forecast {
     background-color: white;
     border: black;
     border: 1px solid;
@@ -44,7 +44,35 @@
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-    
+    width: 1000px;
+    height: 300px;#forecast {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Add this to enable horizontal scrolling if needed
+
+} */
+
+
+
+/* 
+#forecast {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Add this to enable horizontal scrolling if needed */
+
+/* } */
+
+.card {
+    background-color: white;
+    border: black;
+    border: 1px solid;
+    color: black;
+    padding: 15px 32px;
+    text-align: start;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     width: 1000px;
     height: 300px;
 }
