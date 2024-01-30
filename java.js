@@ -66,6 +66,16 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
             $("#today").append("<p>Wind:" + data.wind.speed + "</p>");
             $("#today").append("<p>Humidity:" + data.main.humidity + "</p>");
 
+            // for (var i = 1; i <= 5; i++) {
+            //     var cardHtml = "<div class='card'>" +
+            //                         "<div class='card-body'>" +
+            //                             "<h5 class='card-title'>" + "Date" + "</h5>" +
+            //                             "<p class='card-text'>" + "Temp" + "</p>" +
+            //                             "<p class='card-text'>" + "Wind" + "</p>" +
+            //                             "<p class='card-text'>" + "Humidity" + "</p>" +
+            //                         "</div>" +
+            //                     "</div>";
+                                  
         })
     })
 
