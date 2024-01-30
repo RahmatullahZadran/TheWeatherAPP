@@ -22,7 +22,11 @@ $("#search-button").on("click", function (event) {
     if (searchInput.value === "" || searchInput.value === null ) {
         return;
     }
-    
+
+
+    //unauthorized 
+
+
 // var queryURL = "https://pro.openweathermap.org/data/2.5/forecast?q= " + searchInput.value + "&" + "units=imperial&appid=" + apiKey;
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput.value + "&" + "appid="+ apiKey;
 
@@ -38,6 +42,32 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
         // Remove the oldest button
         $(".history-button:first").remove();
     }
+
+    // if a button is pressed search for that city
+    $(".history-button").on("click", function () {
+
+        var city = $(this).text();
+        queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&" + "appid=" + apiKey;
+
+        fetch(queryURL) 
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+
+            //empty div
+            $("#today").empty();
+            //today date dd/mm/yyyy
+            var today = dayjs().format('DD MM, YYYY');
+            var iconCode = data.weather[0].icon;
+            var iconUrl = "https://openweathermap.org/img/w/" + iconCode + ".png";
+            $("#today").append("<h1>" + data.name + " " + today + "<img src='" + iconUrl + "'>"  + "</h1>");
+            $("#today").append("<p>Temp:" + data.main.temp + "</p>");
+            $("#today").append("<p>Wind:" + data.wind.speed + "</p>");
+            $("#today").append("<p>Humidity:" + data.main.humidity + "</p>");
+
+        })
+    })
 
     fetch(queryURL)
     .then(function (response) {
@@ -112,6 +142,12 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
 });
 });
 
+
+$(".history-button").on("click", function () {
+
+    var city = $(this).text();
+    queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&" + "appid=" + apiKey;
+})
 
 
 
