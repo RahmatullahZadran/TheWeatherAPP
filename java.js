@@ -8,6 +8,7 @@ var apiKey = "766bf34a17420469977c1a427d2a44ae";
 
 var searchInput = document.querySelector("#search-input");
 
+// var queryURL = "https://pro.openweathermap.org/data/2.5/forecast?q=$" + searchInput.value + "&" + "appid=$" + apiKey;
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput + "&" + "appid="+ apiKey;
 
 var searchInput = document.querySelector("#search-input");
@@ -22,7 +23,7 @@ $("#search-button").on("click", function (event) {
         return;
     }
     
-
+// var queryURL = "https://pro.openweathermap.org/data/2.5/forecast?q= " + searchInput.value + "&" + "units=imperial&appid=" + apiKey;
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput.value + "&" + "appid="+ apiKey;
 
 
@@ -67,27 +68,101 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput
     $("#today").append("<p>Humidity:" + data.main.humidity + "</p>");
 
     console.log(data);
+
     $("#forecast").empty();
     $("#forecast").append("<h1>" + "5 Day Forecast" + "</h1>");
+ 
+
+//unauthorized
+
+
+//     var queryURLDay1 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&units=imperial&appid=" + apiKey;
+//     fetch(queryURLDay1)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//     console.log(data);
+// })
+
+      
+    
             
     for (var i = 1; i <= 5; i++) {
         var cardHtml = "<div class='card'>" +
                             "<div class='card-body'>" +
-                                "<h5 class='card-title'>" + "Date" + "</h5>" +
-                                "<p class='card-text'>" + "Temp" + "</p>" +
-                                "<p class='card-text'>" + "Wind" + "</p>" +
-                                "<p class='card-text'>" + "Humidity" + "</p>" +
+                                "<h5 class='card-title'>" + "Date" + data.dt + "<img src='" + iconUrl + "'>" + "</h5>" +
+                                "<p class='card-text'>" + "Temp" + data.main.temp +    "</p>" +
+                                "<p class='card-text'>" + "Wind" + data.wind.speed +"</p>" +
+                                "<p class='card-text'>" + "Humidity" +   data.main.humidity +"</p>" +
                             "</div>" +
                         "</div>";
 
         $("#forecast").append(cardHtml);
         $(".card").css("width", "18%");
-    
-    }
+        $(".card").css("margin", "2px");
+        $(".card").css("background-color", "darkgray");
 
-}); 
 
+    console.log(queryURL);
+
+
+
+}
 });
+});
+
+
+
+
+
+
+// $("#search-button").on("click", function (event) {
+//     event.preventDefault();
+//     console.log(searchInput.value);
+
+//    //if emoty dont do anything
+//     if (searchInput.value === "" || searchInput.value === null ) {
+//         return;
+//     }
+//     for (var i = 1; i <= 5; i++) {
+//         var cardHtml = "<div class='card'>" +
+//                             "<div class='card-body'>" +
+//                                 "<h5 class='card-title'>" + "Date" + "</h5>" +
+//                                 "<p class='card-text'>" + "Temp" + "</p>" +
+//                                 "<p class='card-text'>" + "Wind" + "</p>" +
+//                                 "<p class='card-text'>" + "Humidity" + "</p>" +
+//                             "</div>" +
+//                         "</div>";
+    
+//         $("#forecast").append(cardHtml);    
+//         $(".card").css("width", "18%");
+//         $(".card").css("margin", "2px");
+//         $(".card").css("background-color", "darkgray");
+        
+    
+
+// var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+ searchInput.value + "&" + "appid="+ apiKey;
+
+// $("#forecast").empty();
+// $("#forecast").append("<h1>" + "5 Day Forecast" + "</h1>");
+
+// var queryURLDay1 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&units=imperial&appid=" + apiKey;
+// fetch(queryURLDay1)
+// .then(function (response) {
+//   return response.json();
+// })
+// .then(function (data) {
+// console.log(data);
+// })
+
+// console.log(queryURL);
+// };
+// });
+
+
+
+
 
 
 // console.log(queryURL);
